@@ -1,10 +1,9 @@
 {
   "name": "register-unique-tagname",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -16,5 +15,17 @@
   "bugs": {
     "url": "https://github.com/antialias/register-unique-tagname/issues"
   },
-  "homepage": "https://github.com/antialias/register-unique-tagname#readme"
+  "homepage": "https://github.com/antialias/register-unique-tagname#readme",
+  "dependencies": {
+    "murmur-128": "^0.1.1",
+    "string-hash": "^1.1.3"
+  },
+  "devDependencies": {
+    "global": "^4.3.2",
+    "mocha": "^3.4.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "description": ""
 }
