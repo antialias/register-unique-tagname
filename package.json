@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/antialias/register-unique-tagname/issues"
   },
-  "homepage": "https://github.com/antialias/register-unique-tagname#readme"
+  "homepage": "https://github.com/antialias/register-unique-tagname#readme",
+  "dependencies": {
+    "string-hash": "^1.1.3"
+  }
 }
