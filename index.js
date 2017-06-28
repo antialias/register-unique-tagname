@@ -3,11 +3,13 @@ function makeTagName(options) {
   options = Object.assign({}, {
       tagName: undefined,
       commitHash: undefined,
-      relativeFilePath: undefined,
+      absolutePath: undefined,
+      relativePath: undefined,
     },
     options
   );
-  const unique = '' + options.commitHash + '-' + options.relativeFilePath;
+  const path = options.absolutePath || options.relativePath;
+  const unique = '' + options.commitHash + '-' + path;
   return `${options.tagName}-${hash(unique)}`;
 };
 function ensureCommitHashDefined() {
@@ -22,15 +24,15 @@ module.exports = {
     };
   },
   makeTagName: makeTagName,
-  registerElement: function (tagName, constructor, relativeFilePath) {
+  registerElement: function (tagName, constructor, filePath) {
     ensureCommitHashDefined();
-    var globalTagName = makeTagName({tagName: tagName, relativeFilePath: relativeFilePath})
+    var globalTagName = makeTagName({tagName: tagName, absolutePath: filePath})
     constructor.tagName = globalTagName;
     return document.registerElement(globalTagName, constructor);
   },
-  define: function (tagName, constructor, relativeFilePath) {
+  define: function (tagName, constructor, filePath) {
     ensureCommitHashDefined();
-    var globalTagName = makeTagName({tagName: tagName, relativeFilePath: relativeFilePath})
+    var globalTagName = makeTagName({tagName: tagName, absolutePath: filePath})
     constructor.tagName = globalTagName;
     return customElements.define(globalTagName, constructor);
   },
