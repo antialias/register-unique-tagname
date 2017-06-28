@@ -11,7 +11,7 @@ function makeTagName(options) {
   return `${options.tagName}-${hash(unique)}`;
 };
 function ensureCommitHashDefined() {
-  if (typeof COMMITHASH === undefined || new String(COMMITHASH).length === 0 || COMMITHASH === undefined) {
+  if (typeof COMMITHASH === "undefined" || new String(COMMITHASH).length === 0 || COMMITHASH === undefined) {
     throw new Error('register-unique-tagname expects COMMITHASH to be defined as the hash for HEAD of your current repository. git-revision-webpack-plugin works well for this if webpack and git are used for this project.');
   }
 };
