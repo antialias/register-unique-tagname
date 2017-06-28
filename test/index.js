@@ -19,16 +19,40 @@ describe('buildMakeTagName', function () {
   });
 });
 describe('register-unique-tagname', function () {
+  beforeEach(function () {
+    global.COMMITHASH = 'abc123';
+  });
+  afterEach(function () {
+    delete global.COMMITHASH;
+  });
   describe('registerElement', function () {
     it('should create a unique tagname', function () {
       rut.registerElement('my-tag', MyConstructor, 'abc-123');
-      assert.equal(MyConstructor.tagName, 'my-tag-2694742392');
+      assert.equal(MyConstructor.tagName, 'my-tag-798404335');
+    });
+    it('should throw if COMMITHASH is not set', function () {
+      delete global.COMMITHASH;
+      assert.throws(function () {
+        rut.registerElement('my-tag', MyConstructor, 'abc-123');
+      });
     });
   });
   describe('define', function () {
     it('should create a unique tagname', function () {
       rut.define('my-tag', MyConstructor, 'def-456');
-      assert.equal(MyConstructor.tagName, 'my-tag-876700024');
+      assert.equal(MyConstructor.tagName, 'my-tag-1414631151');
+    });
+    it('should throw if COMMITHASH is not set', function () {
+      delete global.COMMITHASH;
+      assert.throws(function () {
+        rut.define('my-tag', MyConstructor, 'abc-123');
+      });
+    });
+    it('should throw if COMMITHASH is undefined', function () {
+      global.COMMITHASH = undefined;
+      assert.throws(function () {
+        rut.define('my-tag', MyConstructor, 'abc-123');
+      });
     });
   });
 });
