@@ -26,13 +26,13 @@ module.exports = {
   makeTagName: makeTagName,
   registerElement: function (tagName, constructor, filePath) {
     ensureCommitHashDefined();
-    var globalTagName = makeTagName({tagName: tagName, absolutePath: filePath})
+    var globalTagName = makeTagName({tagName: tagName, absolutePath: filePath, commitHash: COMMITHASH})
     constructor.tagName = globalTagName;
     return document.registerElement(globalTagName, constructor);
   },
   define: function (tagName, constructor, filePath) {
     ensureCommitHashDefined();
-    var globalTagName = makeTagName({tagName: tagName, absolutePath: filePath})
+    var globalTagName = makeTagName({tagName: tagName, absolutePath: filePath, commitHash: COMMITHASH})
     constructor.tagName = globalTagName;
     return customElements.define(globalTagName, constructor);
   },
