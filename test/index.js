@@ -8,6 +8,16 @@ global.customElements = {
   define: function () {}
 };
 function MyConstructor() {};
+describe('buildMakeTagName', function () {
+  it('sets the commit hash', function () {
+    var buildMakeTagName1 = rut.buildMakeTagName({commitHash: 'abc123'});
+    var buildMakeTagName2 = rut.buildMakeTagName({commitHash: 'def456'});
+    assert.notEqual(
+      buildMakeTagName1({tagName: 'my-tag-name'}),
+      buildMakeTagName2({tagName: 'my-tag-name'})
+    );
+  });
+});
 describe('register-unique-tagname', function () {
   describe('registerElement', function () {
     it('should create a unique tagname', function () {
